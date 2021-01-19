@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Basic Setup</title>
+    <!-- Import favicon -->
+    <link rel="icon" href="./assets/favicon.png"/>
+    <!-- Import stylesheets -->
+    <link rel="stylesheet" type="text/css" href="./libs/bootstrap-4.4.1-dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <!-- Import library scripts -->
+    <script src="./libs/jquery-3.4.1.min.js"></script>
+    <script src="./libs/popper.min.js"></script>
+    <script src="./libs/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="./libs/gauge.min.js"></script>
+  </head>
+  <body onload="populate()">
+
+   
+   
+
+    <div class="container-fluid ">
+      <div class="row vertical-spacing ">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 countour-spacing">
+			<label class="checkbox-inline">
+			
+			  </label>
+            <div class="form-group">
+				
+				<textarea rows="25" style="height:40%" id="mytext" class="form-control rounded-0 " rows="10"></textarea>
+			  </div>
+			
+			<script>
+				
+				function httpGet(theUrl)
+				{
+					var xmlHttp = new XMLHttpRequest();
+					xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+					xmlHttp.send( null );
+					return xmlHttp.responseText;
+				}
+				function populate() {
+					
+					
+				
+				var textarea=document.getElementById('mytext');
+				textarea.textContent=httpGet(location.origin+"/stream");
+				
+
+				}
+
+        function send() {
+					
+					
+				  var textarea=document.getElementById('mytext');
+	        var text1 = $("#mytext").val();
+          var xmlHttp = new XMLHttpRequest();
+					xmlHttp.open( "POST", location.origin+"/writeconf", false ); // false for synchronous request
+					xmlHttp.send( text1 );
+					
+  
+        }
+		
+				
+			</script>
+			<div class="d-flex justify-content-between">
+				
+				<div>
+				  <button type="button" class="btn btn-outline-warning" onclick="send()"  target="_blank" >Write Configuration</button>
+				</div>
+				<div>
+					<button type="button" onclick="window.location.href = '/disableconf';" class="btn btn-outline-danger">Disable NodeRe Configuration</button>
+				</div>
+				<div>
+					<button type="button" onclick="window.location.href = '/rundefault';" class="btn btn-outline-secondary">Apply at startup</button>
+				</div>
+			  </div>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      
+      
+    </div>
+  
+     
+    
+  </body>
+  <!-- Site footer -->
+ <!-- Footer -->
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3 vertical-double-spacing">2020
+  </div>
+  <!-- Copyright -->
+
+</footer>
+

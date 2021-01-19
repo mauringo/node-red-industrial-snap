@@ -1,0 +1,11 @@
+#!/bin/sh
+
+cd $SNAP_DATA/Flask/
+
+
+if [  -f $SNAP_DATA/Flask/configurator.enabled ]; then
+    python3 app.py
+    exit 1
+fi
+
+exit 0

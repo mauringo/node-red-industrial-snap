@@ -1,0 +1,10 @@
+#!/bin/sh -e
+
+
+#this script runs once at the installation. place your code below
+echo "You are installing the app"
+mkdir $SNAP_DATA/Flask
+cp -a $SNAP/bin/Flask/*  $SNAP_DATA/Flask/
+
+
+echo "hello" > "$SNAP_DATA/Flask/hello.conf"

@@ -1,4 +1,4 @@
-name: node-red
+name: node-red-industrial
 adopt-info: node-red
 summary: Low-code programming for event-driven applications
 description: Node-RED is a flow based programming application for wiring together hardware devices, APIs and online services in new and interesting ways. For more information see http://nodered.org
@@ -32,6 +32,14 @@ apps:
       - pulseaudio
       - removable-media
       - serial-port
+      
+
+      
+  flask:
+    command: bin/configurator
+    daemon: simple
+    plugs: [network, network-bind, mount-observe, network-observe, system-observe, bluetooth-control]
+      
   npm:
     command: bin/npm
     plugs:
@@ -43,6 +51,22 @@ apps:
       - desktop
 
 parts:
+
+
+  python-flask:  
+    plugin: python 
+    python-version: python3
+    python-packages: [flask]
+    build-packages:
+      - python3-dev
+      - build-essential
+      
+  python-code:  
+    source: ./Flask/
+    plugin: dump
+    organize:
+      '*': bin/Flask/
+
   node: # We dump in a specific version of node/npm from upstream.
     plugin: dump
     source:
@@ -51,6 +75,7 @@ parts:
       - on arm64: https://nodejs.org/dist/v10.22.1/node-v10.22.1-linux-arm64.tar.gz
       - on s390x: https://nodejs.org/dist/v10.22.1/node-v10.22.1-linux-s390x.tar.gz
       - on i386: https://nodejs.org/dist/v8.17.0/node-v8.17.0-linux-x86.tar.gz
+      
   node-red:
     after: [node]
     plugin: nil # We use the nil plugin so we can fully override the build with whatever we need to do
@@ -62,7 +87,7 @@ parts:
       apt-get install libatomic1
       npm config set unsafe-perm True
       # npm install --prefix $SNAPCRAFT_PART_INSTALL/lib
-      npm install --no-audit --no-fund --prefix $SNAPCRAFT_PART_INSTALL/lib node-red node-red-node-ping node-red-node-random node-red-node-rbe node-red-node-serialport
+      npm install --no-audit --no-fund --prefix $SNAPCRAFT_PART_INSTALL/lib node-red node-red-node-ping node-red-node-random node-red-node-rbe node-red-node-serialport node-red-dashboard node-red-contrib-opcua node-red-contrib-influxdb node-red-contrib-mongodb3 node-red-contrib-ctrlx-automation
       find $SNAPCRAFT_PART_INSTALL -type f -name '*.js.swp' -delete
       find $SNAPCRAFT_PART_INSTALL/lib/node_modules -type d -name test -prune -exec rm -rf {} \;
       find $SNAPCRAFT_PART_INSTALL/lib/node_modules -type d -name doc -prune -exec rm -rf {} \;
@@ -89,9 +114,11 @@ parts:
       VER=$(npm show node-red version)
       echo "VERSION $(npm show node-red version)"
       snapcraftctl set-version $VER
-  settings:
+      
+  scripts:
     plugin: dump
-    source: snap/local/settings # snapcraft now prefers local parts to be in snap/local
+    source: scripts # snapcraft now prefers local parts to be in snap/local
     organize:
       start.sh: "bin/startNR"
+      configurator: "bin/configurator"
       desktop-launch: "bin/desktop-launch"
