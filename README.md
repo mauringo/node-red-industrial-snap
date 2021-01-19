@@ -1,4 +1,4 @@
-# Node-RED Snap package
+# Modded Node-RED Snap package
 
 [![platform](https://img.shields.io/badge/platform-Node--RED-red)](https://nodered.org)
 [![GitHub version](https://badge.fury.io/gh/node-red%2Fnode-red.svg)](https://badge.fury.io/gh/node-red%2Fnode-red)
@@ -7,8 +7,6 @@ The Node-RED graphical wiring tool for Low-code programming of event-driven appl
 Packaged as a Core18 based Ubuntu Snap, intended for multiple architectures.
 
 Listens on port 1881 and runs as as service in strict mode by default.
-
-By default builds get automatically placed in the edge channel, and then promoted to the stable channel manually.
 
 ### Restrictions
 
