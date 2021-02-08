@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=Node-RED
+Name=Node-RED-Industrial
 Comment=Low-code programming for event-driven applications
 Exec=node-red-industrial.desktop-launch
 Icon=${SNAP}/meta/gui/icon.png
