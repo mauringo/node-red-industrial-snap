@@ -5,6 +5,9 @@ description: |
         Node-RED is a flow based programming application for wiring together hardware devices, APIs and online services in new and interesting ways. For more information see http://nodered.org 
         
         ### Modifications
+        
+        Listens on port 1881 and runs as as service in strict mode by default.
+        Fully configurable on port 1882: edit **settings.js** directly from a webpage!
 
         The snap by default comes with the following packages installed
         node-red dashboard
