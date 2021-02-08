@@ -1,7 +1,18 @@
 name: node-red-industrial
 adopt-info: node-red
 summary: Low-code programming for event-driven applications
-description: Node-RED is a flow based programming application for wiring together hardware devices, APIs and online services in new and interesting ways. For more information see http://nodered.org 
+description: |
+        Node-RED is a flow based programming application for wiring together hardware devices, APIs and online services in new and interesting ways. For more information see http://nodered.org 
+        
+        ### Modifications
+
+        The snap by default comes with the following packages installed
+        node-red dashboard
+        CtrlX-Automation-Contrib
+        OPCUA contrib
+        MongoDB3
+        Influxdb 
+
 confinement: strict
 grade: stable
 base: core18
