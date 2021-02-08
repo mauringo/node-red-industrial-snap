@@ -74,4 +74,4 @@ def stream():
     return Response(generate(), mimetype='text/plain')
 		
 if __name__ == '__main__':
-   app.run(host='0.0.0.0',debug = True, port=1883)
+   app.run(host='0.0.0.0',debug = True, port=1882)
