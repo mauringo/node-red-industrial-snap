@@ -1,4 +1,4 @@
-# Modded Node-RED Snap package
+# Modded Node-RED Snap package to be  more industrial
 
 [![platform](https://img.shields.io/badge/platform-Node--RED-red)](https://nodered.org)
 [![GitHub version](https://badge.fury.io/gh/node-red%2Fnode-red.svg)](https://badge.fury.io/gh/node-red%2Fnode-red)
@@ -7,8 +7,9 @@ The Node-RED graphical wiring tool for Low-code programming of event-driven appl
 Packaged as a Core18 based Ubuntu Snap, intended for multiple architectures.
 
 Listens on port 1881 and runs as as service in strict mode by default.
+Fully configurable on port 1882: edit settings.js directly from a webpage!
 
-### Restrictions
+### Modification
 
 When installed as a Snap package, it will run in a secure container that does
 not have access to any external facilities that may be needed for you to use, such as:
@@ -65,5 +66,8 @@ The base port can be set by the `$PORT` environment variable, or in the `setting
 
 
 #### Building
-
-To re-build locally, modify the snapcraft.yaml as required, and then execute `build_snap.sh`
+   
+    sudo snap install multipass
+    sudo snap install snapcraft --classic
+    snapcraft
+    
