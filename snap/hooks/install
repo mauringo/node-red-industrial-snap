@@ -5,6 +5,6 @@
 echo "You are installing the app"
 mkdir $SNAP_DATA/Flask
 cp -a $SNAP/bin/Flask/*  $SNAP_DATA/Flask/
-
+cp $SNAP_DATA/Flask/settings.js $SNAP_USER_DATA/
 
 echo "hello" > "$SNAP_DATA/Flask/hello.conf"
